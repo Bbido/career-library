@@ -1,27 +1,17 @@
-// Function to filter career fields based on search input
-function filterCareers() {
-    let input = document.getElementById('careerSearch').value.toLowerCase();
-    let careerItems = document.querySelectorAll('.career-field');
-
-    careerItems.forEach(function(career) {
-        let careerName = career.querySelector('span').innerText.toLowerCase();
-        if (careerName.includes(input)) {
-            career.style.display = "block"; // Show the career field
-        } else {
-            career.style.display = "none"; // Hide the career field
-        }
-    });
+// Smooth page transition effect
+function smoothNavigate(url) {
+    document.body.style.opacity = 0;
+    setTimeout(function() {
+        window.location.href = url;
+    }, 500); // Adjust time for transition
 }
 
-// Optional Alert Function (Example for Career Categories)
-function showAlert(career) {
-    alert(`You are exploring the ${career} field!`);
-}
-
-// Example: Attach the alert function to career categories
+// Add click event to career categories for smooth navigation
 document.querySelectorAll('.categories div').forEach(function(category) {
     category.addEventListener('click', function() {
-        let careerName = category.querySelector('span').innerText;
-        showAlert(careerName);
+        let url = category.getAttribute('data-url');
+        if (url) {
+            smoothNavigate(url);
+        }
     });
 });
